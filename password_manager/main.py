@@ -53,13 +53,16 @@ def save_password():
 
 
 def find():
-    with open("password.json",'r') as p:
-        data = json.load(p)
-        passes , email = data[website_input.get()]
-        passe = data[website_input.get()][passes]
-        emails = data[website_input.get()][email]
-        messagebox.showinfo(message= f'password: {passe} \n email: {emails}')
-        pyperclip.copy(passe)
+    try:
+        with open("password.json",'r') as p:
+            data = json.load(p)
+            passes , email = data[website_input.get()]
+            passe = data[website_input.get()][passes]
+            emails = data[website_input.get()][email]
+            messagebox.showinfo(message= f'password: {passe} \n email: {emails}')
+            pyperclip.copy(passe)
+    except KeyError :
+        messagebox.showinfo(message="file not found")
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
